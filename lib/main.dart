@@ -34,8 +34,15 @@ class _QuoteListState extends State<QuoteList> {
           padding: const EdgeInsets.all(12.0),
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: quotes.map((quote) => QuoteCard(quote)).toList()),
+              children: quotes
+                  .map((quote) => QuoteCard(
+                      quote: quote,
+                      delete: () {
+                        setState(() {
+                          quotes.remove(quote);
+                        });
+                      }))
+                  .toList()),
         ));
   }
 }
-
